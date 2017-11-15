@@ -12,6 +12,7 @@ cd-hit -i cin.fasta -aS 0.9 -c 0.5 -g 1 -o cin_cdhit.fasta -n 2 -T 8
 for i in {1..7}; do cut -f1 s$i\_cin.blastp | sort | uniq | wc -l; done
 
 BACTERICINE
+
 ./searchBactericines.pl uniprot_sprot_bacteria.annot i bactericin | sort | uniq > cin.id
 getfastaf.pl bactericin.id uniprot_sprot_bacteria.fasta > bactericin.fasta
 for i in {1..7}; do blastp -query bactericin.fasta -db s$i.fasta -out s$i\_bactericin.blastp -num_threads 8 -outfmt '6 qseqid sseqid qlen slen qcovs pident evalue' -evalue 1e-5; done
