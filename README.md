@@ -18,7 +18,9 @@ getfastaf.pl bactericin.id uniprot_sprot_bacteria.fasta > bactericin.fasta
 for i in {1..7}; do blastp -query bactericin.fasta -db s$i.fasta -out s$i\_bactericin.blastp -num_threads 8 -outfmt '6 qseqid sseqid qlen slen qcovs pident evalue' -evalue 1e-5; done
 for i in {1..7}; do ./filterBlastp.pl s$i\_bactericin.blastp | sort | uniq > s$i\_bactericin.id; grep -wf s$i\_bactericin.id ../contigs/annots/s$i\_UniBac_go_goslim_source.tsv > s$i\_bactericin.annot; done
 
+
 RESISTANCE
+
 ./searchBactericines.pl uniprot_sprot_bacteria.annot i | sort | uniq > cin.id
 getfastaf.pl resistance.id uniprot_sprot_bacteria.fasta > resistance.fasta
 for i in {1..7}; do blastp -query resistance.fasta -db s$i.fasta -out s$i\_resistance.blastp -num_threads 8 -outfmt '6 qseqid sseqid qlen slen qcovs pident evalue' -evalue 1e-5; done
