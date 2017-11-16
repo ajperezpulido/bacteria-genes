@@ -25,7 +25,7 @@ i parameter = Gather IDs
 t parameter = Gather terms
 ./searchBactericines.pl uniprot_sprot_bacteria.annot i bactericin | sort | uniq > cin.id
 
-Gather FASTA file
+Gather FASTA file (for downloading script, plese go to fasta-seq repository)
 getfastaf.pl bactericin.id uniprot_sprot_bacteria.fasta > bactericin.fasta
 
 Blast and report parsing
